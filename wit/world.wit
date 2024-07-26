@@ -1,6 +1,6 @@
 package jabratech:trade-common;
 
-world trade-handler {
-  export update-iv;
+world trade {
+  export trade-handler;
   export types;
 }
