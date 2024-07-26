@@ -1,0 +1,4 @@
+interface trade-handler {
+  use types.{update-iv-request, update-iv-response, trade-error};
+  update-iv: func (request: update-iv-request) -> result<update-iv-response, trade-error>;
+}
