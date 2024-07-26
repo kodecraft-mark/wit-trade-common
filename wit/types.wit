@@ -1,0 +1,14 @@
+interface types {
+  record trade-error {
+    error-code: u8,
+    error: list<string>
+  }
+  record update-iv-response {
+    code: u8,
+    message: string
+  }
+  record update-iv-request {
+    user-email: string,
+    group-id: string;
+  }
+}
