@@ -1,14 +1,86 @@
 interface types {
+  use jabratech:common/types.{pair, currency, option-kind, side, option-type, payout-ccy, instrument-kind, user};
+
+  /** Record representing an error result
+   * - error-code: an error code for validation
+   * - errors: list of description of errors
+   */
   record trade-error {
-    error-code: u8,
-    error: list<string>
+    error-code: s16,
+    errors: list<string>
   }
   record update-iv-response {
-    code: u8,
-    message: string
+    code: s16,
+    message: string,
+    data: list<string>
   }
   record update-iv-request {
     user-email: string,
-    group-id: string;
+    group-ids: list<string>
+  }
+  record trade-list-response {
+    code: s16,
+    message: string,
+    data: list<trade>
+  }
+  record trade {
+    id: s64,
+    date-created: string,
+    date-updated: option<string>,
+    venue-instrument-name: string,
+    venue-order-id: string,
+    venue-trade-id: string,
+    amount: f64,
+    price: f64,
+    instrument-name: string,
+    instrument-kind: instrument-kind,
+    strike: f64,
+    index-price: f64,
+    iv: f64,
+    expiry-timestamp: string,
+    fee-amount: option<f64>,
+    option-kind: option-kind,
+    side: side,
+    interest-rate: f64,
+    group-id: string,
+    px-in-base-ccy: f64,
+    px-in-quote-ccy: f64,
+    spot: f64,
+    has-termsheet: bool,
+    is-submitted: bool,
+    payout-ccy: payout-ccy,
+    option-type: option-type,
+    trade-status: trade-status,
+    has-instrument: bool,
+    trade-type: trade-type,
+    pnl: option<f64>,
+    pnl-ccy: option<string>,
+    activity: trade-activity,
+    pnl-ccy-ticker: option<string>,
+    payout-ccy-ticker: option<string>,
+    r1: option<f64>,
+    r2: f64,
+    ttm: f64,
+    user-created: user,
+    counterparty-id: counterparty,
+    pair-id: pair,
+    base-currency-id: currency,
+    quote-currency-id: currency,
+    fee-currency-id: option<currency>,
+    party-a: counterparty,
+    party-b: counterparty,
+    ccy-id: currency
+  }
+
+  enum trade-status {
+    open,
+    expired,
+    exercised,
+    closed
+  }
+  enum trade-type {
+    trade,
+    settlement,
+    delivery
   }
 }
