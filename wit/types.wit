@@ -1,7 +1,8 @@
 interface types {
   use jabratech:common/types.{pair, currency, option-kind, side, option-type, payout-ccy, instrument-kind, user};
 
-  /** Record representing an error result
+  /** 
+   * Record representing an error result
    * - error-code: an error code for validation
    * - errors: list of description of errors
    */
@@ -9,19 +10,51 @@ interface types {
     error-code: s16,
     errors: list<string>
   }
+
+  /** 
+   * Record representing a response during iv update-iv-request
+   * - code: response code for validation
+   * - message: description of the response
+   * - data: list group-ids that are updated
+   */
   record update-iv-response {
     code: s16,
     message: string,
     data: list<string>
   }
+
+  /**
+   * Record representing a request to update iv
+   * - user-email: email of the user
+   * - group-ids: list of group-ids to update iv
+   */
   record update-iv-request {
     user-email: string,
     group-ids: list<string>
   }
+
+  /**
+   * Record representing a request to get trade list
+   * - code: response code for validation
+   * - message: description of the response
+   * - data: list of trades
+   */
   record trade-list-response {
     code: s16,
     message: string,
     data: list<trade>
+  }
+
+  /**
+   * Record representing a request to get active positions
+   * - user-email: email of the user
+   * - pairs: list of pairs, if the value is None, it will return all active positions on all pairs
+   * - counterparties: list of counterparties, if the value is None, it will return all active positions
+   */
+  record active-postions-request {
+    user-email: string,
+    pairs: option<list<pair>>,
+    counterparties: option<list<s8>>
   }
   record trade {
     id: s64,
@@ -72,12 +105,26 @@ interface types {
     ccy-id: currency
   }
 
+  /**
+   * Enum representing the status of a trade
+   * - open: trade is open
+   * - expired: trade has expired
+   * - exercised: trade has been exercised
+   * - closed: trade is closed
+   */
   enum trade-status {
     open,
     expired,
     exercised,
     closed
   }
+
+  /**
+   * Enum representing the type of a trade
+   * - trade: initial trade
+   * - settlement: the trade is for settlement
+   * - delivery: the trade is for delivery
+   */
   enum trade-type {
     trade,
     settlement,
