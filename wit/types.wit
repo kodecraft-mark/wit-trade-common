@@ -1,5 +1,5 @@
 interface types {
-  use jabratech:common/types.{pair, currency, option-kind, side, option-type, payout-ccy, instrument-kind, user};
+  use jabratech:common/types.{pair, currency, option-kind, side, option-type, payout-ccy, instrument-kind, counterparty, user};
 
   /** 
    * Record representing an error result
@@ -49,12 +49,14 @@ interface types {
    * Record representing a request to get active positions
    * - user-email: email of the user
    * - pairs: list of pairs, if the value is None, it will return all active positions on all pairs
-   * - counterparties: list of counterparties, if the value is None, it will return all active positions
+   * - party-a: counter party as a source of the position
+   * - party-b: list of counterparties, if the value is None, it will return all active positions
    */
-  record active-postions-request {
+  record active-positions-request {
     user-email: string,
     pairs: option<list<pair>>,
-    counterparties: option<list<s8>>
+    party-a: s8,
+    party-b: option<list<s8>>,
   }
   record trade {
     id: s64,
@@ -129,5 +131,14 @@ interface types {
     trade,
     settlement,
     delivery
+  }
+/**
+   * Enum representing the trade activity
+   * - open: trade is on open activity
+   * - close: the trade is on close activity
+   */
+  enum trade-activity {
+    open,
+    close
   }
 }
