@@ -1,6 +1,5 @@
 interface trade-handler {
-  use types.{update-iv-request, update-iv-response, active-positions-request, trade-list-response};
-  use jabratech:common/types.{response-error};
-  update-iv: func (request: update-iv-request) -> result<update-iv-response, response-error>;
-  active-positions: func (request: active-positions-request) -> result<trade-list-response, response-error>;
+  use types.{trade};
+  update-iv: func (user-email: string, group-ids: list<string>) -> bool;
+  active-positions: func (user-email: string, party-a: u8, party-b: option<list<u8>>, pairs: option<list<u8>>) -> list<trade>;
 }

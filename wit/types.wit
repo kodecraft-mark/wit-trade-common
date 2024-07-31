@@ -1,63 +1,63 @@
 interface types {
   use jabratech:common/types.{pair, currency, option-kind, side, option-type, payout-ccy, instrument-kind, counterparty, user};
 
-  /** 
-   * Record representing an error result
-   * - error-code: an error code for validation
-   * - errors: list of description of errors
-   */
-  record trade-error {
-    error-code: s16,
-    errors: list<string>
-  }
+  // /** 
+  //  * Record representing an error result
+  //  * - error-code: an error code for validation
+  //  * - errors: list of description of errors
+  //  */
+  // record trade-error {
+  //   error-code: s16,
+  //   errors: list<string>
+  // }
 
-  /** 
-   * Record representing a response during iv update-iv-request
-   * - code: response code for validation
-   * - message: description of the response
-   * - data: list group-ids that are updated
-   */
-  record update-iv-response {
-    code: s16,
-    message: string,
-    data: list<string>
-  }
+  // /** 
+  //  * Record representing a response during iv update-iv-request
+  //  * - code: response code for validation
+  //  * - message: description of the response
+  //  * - data: list group-ids that are updated
+  //  */
+  // record update-iv-response {
+  //   code: s16,
+  //   message: string,
+  //   data: list<string>
+  // }
 
-  /**
-   * Record representing a request to update iv
-   * - user-email: email of the user
-   * - group-ids: list of group-ids to update iv
-   */
-  record update-iv-request {
-    user-email: string,
-    group-ids: list<string>
-  }
+  // /**
+  //  * Record representing a request to update iv
+  //  * - user-email: email of the user
+  //  * - group-ids: list of group-ids to update iv
+  //  */
+  // record update-iv-request {
+  //   user-email: string,
+  //   group-ids: list<string>
+  // }
 
-  /**
-   * Record representing a request to get trade list
-   * - code: response code for validation
-   * - message: description of the response
-   * - data: list of trades
-   */
-  record trade-list-response {
-    code: s16,
-    message: string,
-    data: list<trade>
-  }
+  // /**
+  //  * Record representing a request to get trade list
+  //  * - code: response code for validation
+  //  * - message: description of the response
+  //  * - data: list of trades
+  //  */
+  // record trade-list-response {
+  //   code: s16,
+  //   message: string,
+  //   data: list<trade>
+  // }
 
-  /**
-   * Record representing a request to get active positions
-   * - user-email: email of the user
-   * - pairs: list of pairs, if the value is None, it will return all active positions on all pairs
-   * - party-a: counter party as a source of the position
-   * - party-b: list of counterparties, if the value is None, it will return all active positions
-   */
-  record active-positions-request {
-    user-email: string,
-    pairs: option<list<pair>>,
-    party-a: s8,
-    party-b: option<list<s8>>,
-  }
+  // /**
+  //  * Record representing a request to get active positions
+  //  * - user-email: email of the user
+  //  * - pairs: list of pairs, if the value is None, it will return all active positions on all pairs
+  //  * - party-a: counter party as a source of the position
+  //  * - party-b: list of counterparties, if the value is None, it will return all active positions
+  //  */
+  // record active-positions-request {
+  //   user-email: string,
+  //   pairs: option<list<pair>>,
+  //   party-a: s8,
+  //   party-b: option<list<s8>>,
+  // }
   record trade {
     id: s64,
     date-created: string,
