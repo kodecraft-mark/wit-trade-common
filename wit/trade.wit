@@ -1,5 +1,6 @@
 interface trade-handler {
-  use types.{update-iv-request, update-iv-response, trade-error, active-positions-request, trade-list-response};
-  update-iv: func (request: update-iv-request) -> result<update-iv-response, trade-error>;
-  active-positions: func (request: active-positions-request) -> result<trade-list-response, trade-error>;
+  use types.{update-iv-request, update-iv-response, active-positions-request, trade-list-response};
+  use jabratech:common/types.{response-error};
+  update-iv: func (request: update-iv-request) -> result<update-iv-response, response-error>;
+  active-positions: func (request: active-positions-request) -> result<trade-list-response, response-error>;
 }
