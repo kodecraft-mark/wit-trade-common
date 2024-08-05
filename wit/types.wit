@@ -85,4 +85,36 @@ interface types {
     open,
     close
   }
+
+  /**
+   * Record representing exercise balance
+   * - counterparty-name: name of the counterparty
+   * - currency-name: name of the currency
+   * - amount: the amount of the exercised balance
+   * - delta: the delta of the exercised balance
+   * - pnl: profit and loss
+   */
+  record exercised-balance {
+    counterparty-name: string,
+    currency-name: string,
+    amount: f64,
+    delta: f64,
+    pnl: f64
+  }
+
+  /**
+   * Record representing interest-payment
+   * - counterparty-name: name of the counterparty
+   * - currency-name: name of the currency
+   * - amount: the amount of the interest-payment
+   * - delta: the delta of the interest-payment
+   * - pnl: profit and loss
+   */
+  record interest-payment {
+    counterparty-name: string,
+    currency-name: string,
+    amount: f64,
+    delta: f64,
+    pnl: f64
+  }
 }
