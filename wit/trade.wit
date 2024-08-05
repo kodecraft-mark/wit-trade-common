@@ -1,5 +1,5 @@
 interface trade-handler {
-  use types.{trade};
+  use types.{trade, exercised-balance, interest-payment};
   update-iv: func (user-email: string, iv: f64, group-ids: list<string>) -> bool;
   active-positions: func (user-email: string, party-a: u8, party-b: option<list<u8>>, pair-id: u8) -> list<trade>;
   exercise-balances: func (user-email: string, party-b: option<list<u8>>) -> list<exercised-balance>;
