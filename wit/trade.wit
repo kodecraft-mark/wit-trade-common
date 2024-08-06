@@ -1,6 +1,6 @@
 interface trade-handler {
   use types.{trade, exercised-balance, interest-payment};
-  use jabratech:common/types.{currency}
+  use jabratech:common/types.{currency};
   update-iv: func (user-email: string, iv: f64, group-ids: list<string>) -> bool;
   active-positions: func (user-email: string, party-a: u8, party-b: option<list<u8>>, pair-id: u8) -> list<trade>;
   exercise-balances: func (user-email: string, counterparties: list<u8>, currencies: list<currency>) -> list<exercised-balance>;
